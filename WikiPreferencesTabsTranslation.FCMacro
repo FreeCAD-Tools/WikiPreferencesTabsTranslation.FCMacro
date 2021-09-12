@@ -1,0 +1,53 @@
+#! python
+# -*- coding: utf-8 -*-
+# (c) 2021 <Evgeniy>
+
+from FreeCAD import Qt
+
+dict={
+"Portuguese, Brazilian":"pt-br",
+"Russian":"ru",
+"German":"de",      
+"French":"fr",
+"Polish":"pl",    
+"Spanish":"es",
+"Italian":"it",
+"Romanian":"ro",
+"Croatian":"hr",
+"Czech":"cs",
+"Japanese":"ja",
+"Korean":"ko",
+"Portuguese":"pt",
+"Turkish":"tr",
+"Ukrainian":"uk",
+"Chinese Simplified":"zh-cn",
+"Swedish":"sv",
+"Indonesian":"id"
+}
+
+header={
+"Gui::Dialog::DlgGeneral":"General",
+"Gui::Dialog::DlgSettingsDocument":"Document",
+"Gui::Dialog::DlgSettingsSelection":"Selection",
+"Gui::Dialog::DlgEditorSettings":"Editor",
+"Gui::Dialog::DlgReportView":"Output window",
+"Gui::Dialog::DlgSettingsMacro":"Macro",
+"Gui::Dialog::DlgSettingsUnits":"Units",
+"Gui::Dialog::DlgSettings3DView":"3D View",
+"Gui::Dialog::DlgSettingsNavigation":"Navigation",
+"Gui::Dialog::DlgSettingsViewColor":"Colors",
+"MeshGui::DlgSettingsMeshView":"Mesh view",
+}
+
+# Store current language
+loc = App.Gui.getLocale()
+for lang in dict :
+   # Print langage
+   print("\n\n\n"+ dict[lang] + "|" + lang +"\n\n\n")
+   # Set language
+   App.Gui.setLocale(lang)
+   for context in header :
+      print("==="+header[context]+"=== | ==="+Qt.translate(context,header[context])+"===")
+      
+# Restore language      
+App.Gui.setLocale(loc) 
